@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>무료폰트를 찾아줘, 폰트얌! (Fontyam)</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script>
+	$(function() {
+		$('#btnSearch').on("click", function() {
+			var html, kogl_level, ttf, otf;
+			$.ajax({
+				url: "https://openapi.vitzro.kr/openapi/services/Freefont?client_name=web_application&secretKey=1E736AEA16AA2F829688941198354C48&application=web&apiuser=N10000001&ver=20",
+				dataType: "jsonp",
+				success:function(data){
+					//console.log(data);
+					$.each(data, function(key, value) {
+						$.each(value["list"], function(k, v) {
+							var scope_level = [];
+							var scope_user = [];
+
+							if(v.sff_kogl_level == "0") kogl_level = ""; else kogl_level = v.sff_kogl_level + "유형";
+							if(v.ttf == "1") ttf = "지원"; else ttf = "미지원";
+							if(v.otf == "1") otf = "지원"; else otf = "미지원";
+
+							if(v.scope_personal == "1") scope_user.push("개인");
+							if(v.scope_organization == "1") scope_user.push("기관");
+							if(v.scope_biz == "1") scope_user.push("기업");
+
+							if(v.scope_makedoc) scope_level.push("문서작성");
+							if(v.scope_printing) scope_level.push("인쇄물");
+							if(v.scope_web) scope_level.push("웹디자인");
+							if(v.scope_picture) scope_level.push("영상물");
+							if(v.scope_product) scope_level.push("제품");
+							if(v.scope_bizimage) scope_level.push("기업이미지(BI/CI등)");
+							if(v.scope_elearning) scope_level.push("E-Learning");
+							if(v.scope_ebook) scope_level.push("E-Book");
+							if(v.scope_application) scope_level.push("프로그램/어플리케이션");
+							if(v.scope_game) scope_level.push("게임");
+							if(v.scope_embeded) scope_level.push("임베이딩");
+							if(v.scope_dist) scope_level.push("2차배포");
+
+							scope_user = scope_user.join();
+							scope_level = scope_level.join();
+
+							html += "<tr class=\"tr\">\n<td class=\"td\"><a href=\"" + v.agreement_addr + "\" style=\"color:#333;font-weight:bold;\" target=\"_blank\">" + v.fontname + "</a></td>\n<td class=\"td\">" + v.fontstyle + "</td>\n<td class=\"td\">" + v.owner + "</td>\n<td class=\"td\">" + kogl_level + "</td>\n<td class=\"td\">" + ttf + "</td>\n<td class=\"td\">" + otf + "</td>\n<td class=\"td\">" + scope_user + "</td>\n<td class=\"td\">" + v.limit_text + "</td>\n<td class=\"td\">" + scope_level + "</td>\n</tr>";
+							$('tbody').html(html);
+						})
+					});
+				}, error:function(data) {
+					alert("API 서버와 연결에 실패하였습니다.");
+				}
+			})
+		});
+		$('#btnKogl').on("click", function() {
+			window.open("https://www.kogl.or.kr/info/license.do");
+		})
+		$('#btnHome').on("click", function() {
+			window.open("http://blog.vitzro.kr");
+		})
+	});
+</script>
+</head>
+
+<body>
+	<div id="tools">
+		<p class="tools_left">검색방식: <span class="q_type">온라인 API</span></p>
+		<p class="tools_right">
+			<button type="button" id="btnSearch">검색</button>
+			<button type="button" id="btnKogl">공공누리유형 알아보기</button>
+			<button type="button" id="btnHome">개발자 홈</button>
+		</p>
+	</div>
+	<div class="clear"></div>
+	<table class="table">
+		<thead class="thead">
+			<tr class="tr">
+				<th class="th fontname">글꼴명</th>
+				<th class="th fontstyle">글꼴형태</th>
+				<th class="th owner">저작권자</th>
+				<th class="th kogl_level">공공누리</th>
+				<th class="th ttf">TTF</th>
+				<th class="th otf">OTF</th>
+				<th class="th scope_user">사용대상</th>
+				<th class="th limit_text">제한사항</th>
+				<th class="th">사용가능범위</th>
+			</tr>
+		</thead>
+		<tbody class="tbody">			
+		</tbody>
+	</table>
+	<style>
+		html,body{margin:0;padding:0px 5px;}
+		div#tools{width:100%;height:auto;padding:10px 0;}
+		div#tools > p {padding:0;margin:0;}
+		p.tools_left{float:left;}
+		p.tools_right{float:right;}
+		.clear{clear:both;}
+		.table{
+			display: table;
+  			table-layout: fixed;
+  			border-collapse: collapse;
+  			width: 100%;
+  			text-align: center;
+		}
+		.thead{
+			display: table-header-group;
+		}
+		.tbody{
+			display: table-row-group;
+		}
+		.tr {
+			display: table-row;
+		}
+		.th {
+			display: table-cell;
+			background: #333;
+			border: 1px solid #333;
+			color: #fff;
+  			font-size: 10pt;
+		}
+		.td {
+			display: table-cell;
+			border: 1px solid #ccc;
+			vertical-align: middle;
+			height:50px;
+  			font-size: 10pt;
+		}
+		.fontname{width:140px;}
+		.fontstyle{width:60px;}
+		.owner{width:120px;}
+		.kogl_level{width:80px;}
+		.ttf,.otf{width:40px;}
+		.scope_user{width:110px;}
+		.limit_text{width:360px;}
+	</style>
+</body>
+</html>
