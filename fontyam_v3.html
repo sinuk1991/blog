@@ -2,14 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>무료폰트를 찾아줘, 폰트얌! v3 (Fontyam)</title>
+	<title>무료폰트를 찾아줘, 폰트얌! BETA (Fontyam)</title>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script>
 	$(function() {
 		$('#btnSearch').on("click", function() {
 			var html, kogl_level, ttf, otf;
 			$.ajax({
-				url: "https://openapi.vitzro.kr/openapi/services/FreefontResult_v3?client_name=web_application&secretKey=1E736AEA16AA2F829688941198354C48&application=web&apiuser=N10000001&ver=20",
+				url: "https://openapi.vitzro.kr/openapi/services/Freefont?client_name=web_application&secretKey=1E736AEA16AA2F829688941198354C48&application=web&apiuser=N10000001&ver=20",
 				dataType: "jsonp",
 				success:function(data){
 					//console.log(data);
@@ -42,7 +42,7 @@
 							scope_user = scope_user.join();
 							scope_level = scope_level.join();
 
-							html += "<tr class=\"tr\">\n<td class=\"td\"><a href=\"" + v.agreement_addr + "\" style=\"color:#333;font-weight:bold;\" target=\"_blank\">" + v.fontname + "</a></td>\n<td class=\"td\">" + v.fontstyle + "</td>\n<td class=\"td\">" + v.owner + "</td>\n<td class=\"td\">" + kogl_level + "</td>\n<td class=\"td\">" + ttf + "</td>\n<td class=\"td\">" + otf + "</td>\n<td class=\"td\">" + scope_user + "</td>\n<td class=\"td\">" + v.limit_text + "</td>\n<td class=\"td\">" + scope_level + "</td>\n</tr>";
+							html += "<tr class=\"tr\">\n<td class=\"td\"><a href=\"" + v.agreement_addr + "\" style=\"color:#333;font-weight:bold;\" target=\"_blank\">" + v.fontname + "</a></td>\n<td class=\"td\"><img src=\"" + v.font_preview + "\" alt=\"미리보기\"></td>\n<td class=\"td\">" + v.fontstyle + "</td>\n<td class=\"td\">" + v.owner + "</td>\n<td class=\"td\">" + kogl_level + "</td>\n<td class=\"td\">" + ttf + "</td>\n<td class=\"td\">" + otf + "</td>\n<td class=\"td\">" + scope_user + "</td>\n<td class=\"td\">" + v.limit_text + "</td>\n<td class=\"td\">" + scope_level + "</td>\n</tr>";
 							$('tbody').html(html);
 						})
 					});
@@ -75,7 +75,7 @@
 		<thead class="thead">
 			<tr class="tr">
 				<th class="th fontname">글꼴명</th>
-				<th class="th fontview">글꼴</th>
+				<th class="th fontview">&nbsp;</th>
 				<th class="th fontstyle">글꼴형태</th>
 				<th class="th owner">저작권자</th>
 				<th class="th kogl_level">공공누리</th>
