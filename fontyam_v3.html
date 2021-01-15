@@ -41,8 +41,9 @@
 
 							scope_user = scope_user.join();
 							scope_level = scope_level.join();
+							var preview = v.font_preview;
 
-							html += "<tr class=\"tr\">\n<td class=\"td\"><img src=\"data:image/png;base64," + v.font_preview.trim() + "\" alt=\"미리보기\"></td>\n<td class=\"td\"><a href=\"" + v.agreement_addr + "\" style=\"color:#333;font-weight:bold;\" target=\"_blank\">" + v.fontname + "</a></td>\n<td class=\"td\">" + v.fontstyle + "</td>\n<td class=\"td\">" + v.owner + "</td>\n<td class=\"td\">" + kogl_level + "</td>\n<td class=\"td\">" + ttf + "</td>\n<td class=\"td\">" + otf + "</td>\n<td class=\"td\">" + scope_user + "</td>\n<td class=\"td\">" + v.limit_text + "</td>\n<td class=\"td\">" + scope_level + "</td>\n</tr>";
+							html += "<tr class=\"tr\">\n<td class=\"td\"><img src=\"data:image/png;base64," + preview.trim() + "\" alt=\"미리보기\"></td>\n<td class=\"td\"><a href=\"" + v.agreement_addr + "\" style=\"color:#333;font-weight:bold;\" target=\"_blank\">" + v.fontname + "</a></td>\n<td class=\"td\">" + v.fontstyle + "</td>\n<td class=\"td\">" + v.owner + "</td>\n<td class=\"td\">" + kogl_level + "</td>\n<td class=\"td\">" + ttf + "</td>\n<td class=\"td\">" + otf + "</td>\n<td class=\"td\">" + scope_user + "</td>\n<td class=\"td\">" + v.limit_text + "</td>\n<td class=\"td\">" + scope_level + "</td>\n</tr>";
 							$('tbody').html(html);
 						})
 					});
