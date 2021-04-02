@@ -5,29 +5,34 @@
     <title>E-JINDAN QR</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      var schoolcode = 145;
-      var schoolname = "서울천일초등학교";
-      var schoolcity = "서울";
-      var schoollevel = "초등학교";
-      var url = "http://www13.e-jindan.kr/user/list02.asp";
-      
-      var newForm = $('<form></form>');
-      newForm.attr("name", "newForm");
-      newForm.attr("method", "post");
-      newForm.attr("action", url);
-      newForm.attr("target", "_self");
-      
-      newForm.append($('<input/>', {type: 'hidden', name: 'school_code', value: schoolcode}));
-      newForm.append($('<input/>', {type: 'hidden', name: 'schol_name', value: schoolname}));
-      newForm.append($('<input/>', {type: 'hidden', name: 'sido', value: schoolcity}));
-      newForm.append($('<input/>', {type: 'hidden', name: 'school_gubun', value: schoollevel}));
-      
-      newForm.appendTo('body');
-      
-      newForm.submit();
+      $(function() {
+        var schoolcode = 145;
+        var schoolname = "서울천일초등학교";
+        var schoolcity = "서울";
+        var schoollevel = "초등학교";
+        var url = "http://www13.e-jindan.kr/user/list02.asp";
+
+        $(document).ready(function() {
+          var newForm = $('<form></form>');
+          newForm.attr("name", "newForm");
+          newForm.attr("method", "post");
+          newForm.attr("action", url);
+          newForm.attr("target", "_self");
+
+          newForm.append($('<input/>', {type: 'hidden', name: 'school_code', value: schoolcode}));
+          newForm.append($('<input/>', {type: 'hidden', name: 'schol_name', value: schoolname}));
+          newForm.append($('<input/>', {type: 'hidden', name: 'sido', value: schoolcity}));
+          newForm.append($('<input/>', {type: 'hidden', name: 'school_gubun', value: schoollevel}));
+
+          newForm.appendTo('body');
+
+          newForm.submit();
+        });
+      });
     </script>
   </head>
   
   <body>
+    update
   </body>
 </html>
