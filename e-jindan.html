@@ -17,10 +17,10 @@
       newForm.attr("action", url);
       newForm.attr("target", "_self");
       
-      newForm.Append($('<input/>', {type: 'hidden', name: 'school_code', value: schoolcode}));
-      newForm.Append($('<input/>', {type: 'hidden', name: 'schol_name', value: schoolname}));
-      newForm.Append($('<input/>', {type: 'hidden', name: 'sido', value: schoolcity}));
-      newForm.Append($('<input/>', {type: 'hidden', name: 'school_gubun', value: schoollevel}));
+      newForm.append($('<input/>', {type: 'hidden', name: 'school_code', value: schoolcode}));
+      newForm.append($('<input/>', {type: 'hidden', name: 'schol_name', value: schoolname}));
+      newForm.append($('<input/>', {type: 'hidden', name: 'sido', value: schoolcity}));
+      newForm.append($('<input/>', {type: 'hidden', name: 'school_gubun', value: schoollevel}));
       
       newForm.appendTo('body');
       
